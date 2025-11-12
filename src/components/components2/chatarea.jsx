@@ -98,31 +98,39 @@ const ChatArea = ({ chat, onSendMessage, onBack }) => {
         </div>
       </div>
 
+
       {/* Messages Area */}
-      <div className="messages-container flex-grow-1 p-3">
-        {chat.messages.map((msg) => (
-          <div
-            key={msg.id}
-            className={`message-wrapper d-flex mb-3 ${
-              msg.sender === 'me' ? 'justify-content-end' : 'justify-content-start'
-            }`}
-          >
-            <div className="message-content">
-              <div
-                className={`message-bubble ${
-                  msg.sender === 'me' ? 'message-sent' : 'message-received'
-                }`}
-              >
-                <div className="message-text">{msg.text}</div>
-                <div className="message-time">
-                  {msg.time}
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-        <div ref={messagesEndRef} />
+      <div className="messages-container flex-grow-1 p-3 overflow-auto bg-light">
+  {chat.messages && chat.messages.length > 0 ? (
+    chat.messages.map((msg, index) => (
+      <div
+        key={msg.id || index}
+        className={`message-wrapper d-flex mb-3 ${
+          msg.sender === "me" ? "justify-content-end" : "justify-content-start"
+        }`}
+      >
+        <div
+          className={`message-bubble shadow-sm px-3 py-2 rounded-4 ${
+            msg.sender === "me"
+              ? "message-sent bg-primary text-white"
+              : "message-received bg-white border"
+          }`}
+          style={{ maxWidth: "75%" }}
+        >
+          <div className="message-text">{msg.text}</div>
+          <small className="message-time text-muted d-block text-end mt-1">
+            {msg.time}
+          </small>
+        </div>
       </div>
+    ))
+  ) : (
+    <div className="text-muted text-center mt-5">No messages yet</div>
+  )}
+
+  <div ref={messagesEndRef} />
+</div>
+
 
       {/* Message Input */}
       <div className="message-input-container p-3 border-top">

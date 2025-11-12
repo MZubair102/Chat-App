@@ -27,7 +27,7 @@ const ChatHeader = ({ sidebarOpen, onToggleSidebar }) => {
           <i className="fas fa-phone"></i>
         </Button>
         
-        <Dropdown align="end">
+        {/* <Dropdown align="end">
           <Dropdown.Toggle variant="outline-light" id="user-dropdown">
             <i className="fas fa-user-circle me-2"></i>
             User Name
@@ -44,7 +44,7 @@ const ChatHeader = ({ sidebarOpen, onToggleSidebar }) => {
               <i className="fas fa-sign-out-alt me-2"></i>Logout
             </Dropdown.Item>
           </Dropdown.Menu>
-        </Dropdown>
+        </Dropdown> */}
       </Nav>
     </Navbar>
   );

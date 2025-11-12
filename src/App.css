@@ -1,4 +1,263 @@
-/* App.css */
+/* === Base === */
+body {
+  background-color: #f3f4f6;
+  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+  margin: 0;
+  color: #212529;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.chat-app-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+/* === Layout Columns === */
+.sidebar-container,
+.chatwindow-container {
+  height: 100%;
+  padding: 0;
+}
+
+/* === Sidebar === */
+.sidebar {
+  background: linear-gradient(180deg, #ffffff 0%, #f8f9fb 100%);
+  border-right: 1px solid #e4e6ea;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.sidebar .p-3 {
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.sidebar h4 {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #0d6efd;
+  margin-bottom: 0.5rem;
+}
+
+.sidebar input {
+  border-radius: 30px !important;
+  border: 1px solid #dee2e6 !important;
+  transition: all 0.2s ease;
+}
+
+.sidebar input:focus {
+  border-color: #0d6efd !important;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+}
+
+/* === Contact List === */
+.contacts {
+  flex-grow: 1;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #d0d4d9 transparent;
+}
+
+.contacts::-webkit-scrollbar {
+  width: 8px;
+}
+
+.contacts::-webkit-scrollbar-thumb {
+  background: #d0d4d9;
+  border-radius: 4px;
+}
+
+.contact-item {
+  cursor: pointer;
+  border-bottom: 1px solid #f1f1f1;
+  padding: 0.75rem 1rem;
+  transition: background 0.25s ease, border-left 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.contact-item:hover {
+  background: #f0f4ff;
+}
+
+.contact-item.active {
+  background: #e7f1ff;
+  border-left: 4px solid #0d6efd;
+}
+
+.contact-item img {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.status-dot {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+}
+
+/* === Chat Window === */
+.chat-window {
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid #e4e6ea;
+}
+
+/* Header */
+.chat-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e9ecef;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.chat-header h6 {
+  font-weight: 600;
+  color: #212529;
+}
+
+.chat-header small {
+  font-size: 0.85rem;
+}
+
+/* === Chat Body === */
+.chat-body {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 1.25rem;
+  background: linear-gradient(180deg, #f8f9fa 0%, #edf0f3 100%);
+  scrollbar-width: thin;
+  scrollbar-color: #cfd1d5 transparent;
+}
+
+.chat-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-body::-webkit-scrollbar-thumb {
+  background: #cfd1d5;
+  border-radius: 4px;
+}
+
+/* === Message Bubbles === */
+.message-bubble {
+  animation: fadeIn 0.25s ease;
+  padding: 0.75rem 1rem;
+  border-radius: 1.25rem;
+  max-width: 70%;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.message-bubble small {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+.message-bubble.bg-primary {
+  background: linear-gradient(135deg, #0d6efd, #4796ff);
+  color: #fff;
+}
+
+.message-bubble.bg-white {
+  background-color: #fff;
+}
+
+/* === Chat Input === */
+.chat-input {
+  background-color: #ffffff;
+  border-top: 1px solid #dee2e6;
+  box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.05);
+  padding: 0.75rem 1rem;
+}
+
+.chat-input .form-control {
+  border-radius: 30px !important;
+  border: 1px solid #dee2e6;
+  padding: 0.6rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.chat-input .form-control:focus {
+  border-color: #0d6efd !important;
+  box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.1);
+}
+
+.chat-input button {
+  border-radius: 30px !important;
+  padding: 0.6rem 1.5rem;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(13, 110, 253, 0.2);
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.chat-input button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(13, 110, 253, 0.25);
+}
+
+/* === Animations === */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .sidebar {
+    border-right: none;
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  .contact-item {
+    padding: 0.75rem;
+  }
+
+  .chat-body {
+    padding: 0.75rem;
+  }
+}
+.contact-item {
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.contact-item:hover {
+  background-color: #f8f9ff;
+}
+
+.contact-item.active {
+  background-color: #e7f1ff;
+  border-left: 4px solid #0d6efd;
+}
+
+.status-dot {
+  transition: background 0.3s ease;
+}
+
+
+
+App.css
 .chat-app {
   height: 100vh;
   display: flex;
@@ -206,71 +465,4 @@
 .chat-list::-webkit-scrollbar,
 .messages-container::-webkit-scrollbar {
   width: 6px;
-}
-
-.chat-list::-webkit-scrollbar-track,
-.messages-container::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-.chat-list::-webkit-scrollbar-thumb,
-.messages-container::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
-  border-radius: 3px;
-}
-
-.chat-list::-webkit-scrollbar-thumb:hover,
-.messages-container::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .sidebar-col {
-    position: absolute;
-    z-index: 1000;
-    height: 100%;
-    width: 100%;
-  }
-  
-  .chat-area {
-    margin: 0;
-    border-radius: 0;
-  }
-  
-  .message-bubble {
-    max-width: 85%;
-  }
-}
-
-/* Animation for new messages */
-@keyframes messageSlide {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.message-wrapper {
-  animation: messageSlide 0.3s ease-out;
-}
-
-/* Button hover effects */
-.btn-outline-secondary:hover {
-  background-color: #6c757d;
-  border-color: #6c757d;
-}
-
-/* Custom badge styles */
-.badge {
-  font-size: 0.7rem;
-  min-width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
